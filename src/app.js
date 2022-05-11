@@ -3,12 +3,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
+const config = require('./config');
 
 const app = express();
 const router = express.Router();
 
 // connecta ao banco
-mongoose.connect ('mongodb+srv://dsotecnologias:XgSenkufJhsBPsss@local.4pfg9.mongodb.net/curso_balta');
+mongoose.connect (config.connectionString);
 
 // carregar Models 
 const Product = require('./models/product');
