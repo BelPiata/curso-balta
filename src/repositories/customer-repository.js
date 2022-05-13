@@ -5,8 +5,8 @@ const mongoose = require ('mongoose');
 const Customer = mongoose.model('Customer');
 
 
-exports.create =async (date) =>{
+exports.create =async (data) =>{
     var customer = new Customer (data);
-    await Customer.save();
+    await customer.save(customer);
 }
 

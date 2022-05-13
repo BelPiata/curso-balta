@@ -28,6 +28,7 @@ exports.post = async (req, res, next) => {
             message: 'Cliente  cadrastado com sucesso!'
         });
     } catch (e) {
+        console.log("error:", e);
         res.status(500).send({
             message: 'falha ao processar sua requisição'
         });

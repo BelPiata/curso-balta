@@ -27,7 +27,9 @@ validationContract.prototype.isFixedLen = (value, len, message) =>{
 }
 validationContract.prototype.isEmail = (value, message) =>{
     var reg = new RegExp(/^\w+(]-+.'\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
-    errors.push({message: message});
+    if(!reg.test(value)){
+        errors.push({message: message});
+    }
 }
 
 validationContract.prototype.errors = () =>{

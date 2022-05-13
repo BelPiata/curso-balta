@@ -11,8 +11,9 @@
      email: { // titulo
         type: String,
         required: true,
+        unique: true
     },
-    passwoard: { // titulo
+    password: { // titulo
         type: String,
         required: true,
     },
