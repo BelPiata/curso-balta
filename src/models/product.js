@@ -32,7 +32,12 @@
      tags:[{
          type:String,
          required:true
-     }]
+     }] ,
+     Image: { // imagem
+        type: String,
+        required: true,
+        trim: true
+    },
  });
 
  module.exports = mongoose.model('Product', schema);
