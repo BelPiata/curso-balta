@@ -2,6 +2,11 @@
 
 const validationContract = require('../validators/fluent-validator');
 const repository = require('../repositories/product-repository');
+const { type } = require('express/lib/response');
+const guid = require('guid');
+var config = require('../config');
+
+
 
 
 exports.get = async(req, res, next) => {
@@ -63,11 +68,31 @@ exports.post = async (req, res, next) => {
     }
 
     try{
-        await repository.create(req.body)
+
+        // salvar imagem
+        await blobSvc.createBlockBlobFromText ('product-image',folename, buffer, { 
+             contentType: type
+        }, function (error){
+            if (error) {
+                filename = 'deflault-product.png'
+            }
+        });
+
+
+        await repository.create({
+            title: req.body.title,
+            slug: req.body.slug,
+            description: req.body.description,
+            price: req.body.price,
+            active: true,
+            tags: req.body.tags,
+            image:filename
+        });
         res.status(200).send({
             message: 'Produto cadrastado com sucesso!'
         });
     } catch (e) {
+        console.log(e);
         res.status(500).send({
             message: 'falha ao processar sua requisição'
         });
